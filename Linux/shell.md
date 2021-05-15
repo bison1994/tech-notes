@@ -652,3 +652,10 @@ echo ${a: -4:3} # 678
 ```
 
 <br>
+
+## 6. 参考
+
+鉴于 shell 语法过于古怪，且无法跨平台复用，因此通用脚本语言提供了简化实现
+
+- [shelljs](https://documentup.com/shelljs/shelljs)
+- [zx](https://github.com/google/zx)
