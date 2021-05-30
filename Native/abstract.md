@@ -9,6 +9,7 @@
 - MSB = Most Significant Bit（Big-Endian）
 - ISA = Instruction Set Architecture
 - LSB = Linux Standard Base
+- STL = Standard Template Library
 
 
 ### object file
@@ -74,6 +75,9 @@ Executable and Linkable Format 是一种针对可执行文件（executable file�
   - Section Header Table（optional）
   
 ![](https://web.archive.org/web/20150602071342/http://nairobi-embedded.org/img/elf/elf_link_vs_exec_view.jpg)
+
+这样划分的意义是：链接器操作的目标是 section，而加载执行操作的目标是 segment。一般来说，一个 segment 包含多个 section
+
 
 除了 ELF Header 位置固定在顶部，其他部分的次序在不同文件中不一定相同
 
