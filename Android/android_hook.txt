@@ -1,5 +1,12 @@
 Android Hook
 
+知识
+- 虚拟机运行 java 的机制
+- 安卓启动应用的过程
+- native 开发技术（linux 平台）
+- 动态注入的技术
+  - [Hook and Injection (4) (Dynamic Injection)](https://www.programmersought.com/article/60576015375/)
+
 分类
   - 静态 hook（硬改）
     - 系统层硬改
@@ -11,6 +18,8 @@ Android Hook
     - 进程间通信 hook
 
 [盘点Android常用Hook技术](https://zhuanlan.zhihu.com/p/109157321)
+[Hook and Injection(1) (Type of Hook)](https://www.programmersought.com/article/84755060197/)
+《Android 软件安全与逆向分析》
 
 硬改的好处是稳定，彻底。问题是更新效率通常较低，复原通常较麻烦。软改避免了这些问题，但运行时动态修改，暴露点较多
 
@@ -20,11 +29,14 @@ Android Hook
     - https://blog.csdn.net/gdutxiaoxu/article/details/81459830
 
 Dalvik Hook
+- 利用虚拟机执行 java 代码的机制进行 hook
+- [几种Dalvik Hook方案研究](https://blog.csdn.net/wyzzgo/article/details/53706685)
 
 ART Hook
 
 Binary Hook
-
+- DBI，动态二进制插桩
+- [Pin 动态二进制插桩](https://www.bookstack.cn/read/CTF-All-In-One/doc-5.2.1_pin.md)
 
 xposed 检测与对抗
 
