@@ -1,0 +1,66 @@
+Android Hook
+
+分类
+  - 静态 hook（硬改）
+    - 系统层硬改
+    - 应用层硬改（重打包、脱机挂）
+  - 动态 hook
+    - 单进程 hook
+      - 启动阶段
+      - 运行阶段
+    - 进程间通信 hook
+
+[盘点Android常用Hook技术](https://zhuanlan.zhihu.com/p/109157321)
+
+硬改的好处是稳定，彻底。问题是更新效率通常较低，复原通常较麻烦。软改避免了这些问题，但运行时动态修改，暴露点较多
+
+最简单的方法：动态注入代码，动态修改原实现（单进程、运行阶段）
+  - js：直接 hook、利用 Proxy
+  - java：利用反射、利用 Proxy
+    - https://blog.csdn.net/gdutxiaoxu/article/details/81459830
+
+Dalvik Hook
+
+ART Hook
+
+Binary Hook
+
+
+xposed 检测与对抗
+
+- 静态特征
+  - 检测【包名】
+  - 检测 xposed 引入的【文件】或【目录】
+  - 从 so 中查找【敏感信息】
+    - 直接查名称（symbol）、字符串
+    - 通过【指令特征】匹配特征函数
+- 动态特征
+  - 自造异常，从【堆栈】查看有无敏感信息
+  - 检测 xposed 引入的【类】
+  - 从【/proc/self/maps】检测敏感信息
+  - 从【/proc/self/mounts】检测敏感信息
+  - 检测方法是否【isNative】
+  - 扫描【内存】查找敏感特征
+
+[Android Hook技术防范漫谈](https://tech.meituan.com/2018/02/02/android-anti-hooking.html)
+[Xposed注入实现分析及免重启定制](https://bbs.pediy.com/thread-223713.htm)
+
+
+Frida 检测与对抗
+
+- 静态检测
+  - 检测 so 文件段的变化（https://bbs.pediy.com/thread-268586.htm）
+- 动态检测
+  - 检测进程列表里有无 frida-server（bypass 方法：改名字）
+  - 检测 frida-server 默认端口（bypass 方法：改端口）
+  - 检测 D-Bus 协议通信（bypass 方法：脱机模式，不依赖 frida-server）
+  - 检测 /proc/self/maps
+
+[python反爬之反调试检测frida](https://www.cnblogs.com/Eeyhan/p/13458549.html)
+[DetectFrida](https://github.com/darvincisec/DetectFrida)
+[strongR-frida-android](https://github.com/hluwa/strongR-frida-android)
+
+hook 框架必要依赖的检测，如 magisk、root，对应方法：hook 检测点，根本方法是去依赖
+
+
+
