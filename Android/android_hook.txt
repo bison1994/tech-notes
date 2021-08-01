@@ -27,6 +27,7 @@ Android Hook
   - js：直接 hook、利用 Proxy
   - java：利用反射、利用 Proxy
     - https://blog.csdn.net/gdutxiaoxu/article/details/81459830
+    - https://jeanboy.blog.csdn.net/article/details/108314751
 
 Dalvik Hook
 - 利用虚拟机执行 java 代码的机制进行 hook
