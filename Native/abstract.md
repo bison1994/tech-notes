@@ -104,3 +104,11 @@ Type           Offset   VirtAddr   PhysAddr   FileSiz MemSiz  Flg Align
 **Sections / Segments** 是程序的主体，包括指令、数据、符号表等信息。每个段都是连续的字节序列。系统创建进程映像（process image）的过程，本质就是把 segment 复制、载入到内存
 
 **Section Header Table（SHT）** 由一组大小相同的入口（段表项）组成，描述了每个段的名称、大小等信息。段和段表项是一一对应的
+
+
+### 编译的四个阶段
+
+- 预处理：处理所有 # 号开头的内容
+- 编译：源代码到汇编
+- 汇编：汇编到机器码
+- 链接
