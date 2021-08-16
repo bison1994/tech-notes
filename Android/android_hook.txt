@@ -38,6 +38,7 @@ ART Hook
 Binary Hook
 - DBI，动态二进制插桩
 - [Pin 动态二进制插桩](https://www.bookstack.cn/read/CTF-All-In-One/doc-5.2.1_pin.md)
+- 主要类型：异常 Hook、inline hook、got hook、LD_PRELOAD hook、虚表 hook
 
 xposed 检测与对抗
 
