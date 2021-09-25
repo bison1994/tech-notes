@@ -1,44 +1,59 @@
 Android Hook
 
+Hook 的对象是函数，Hook 的能力包括：
+
+- AOP 编程，before 读/写参数、after 读/写返回值
+- replace
+- 调用原方法
+
+
 知识
+
 - 虚拟机运行 java 的机制
 - 安卓启动应用的过程
 - native 开发技术（linux 平台）
 - 动态注入的技术
   - [Hook and Injection (4) (Dynamic Injection)](https://www.programmersought.com/article/60576015375/)
 
-分类
-  - 静态 hook（硬改）
-    - 系统层硬改
-    - 应用层硬改（重打包、脱机挂）
-  - 动态 hook
-    - 单进程 hook
-      - 启动阶段
-      - 运行阶段
-    - 进程间通信 hook
 
-[盘点Android常用Hook技术](https://zhuanlan.zhihu.com/p/109157321)
+分类
+
+- 静态 hook（硬改）
+  - 系统层硬改（定制 ROM、虚拟机）
+  - 应用层硬改（重打包、脱机挂）
+- 动态 hook
+  - 单进程 hook
+    - 启动阶段
+    - 运行阶段
+  - 进程间通信 hook
+
+[盘点 Android 常用 Hook 技术](https://zhuanlan.zhihu.com/p/109157321)
 [Hook and Injection(1) (Type of Hook)](https://www.programmersought.com/article/84755060197/)
 《Android 软件安全与逆向分析》
 
 硬改的好处是稳定，彻底。问题是更新效率通常较低，复原通常较麻烦。软改避免了这些问题，但运行时动态修改，暴露点较多
 
-最简单的方法：动态注入代码，动态修改原实现（单进程、运行阶段）
-  - js：直接 hook、利用 Proxy
-  - java：利用反射、利用 Proxy
+分两步看，hook 自己 => hook 别人
+
+
+Java Hook
+- 利用反射、Proxy
     - https://blog.csdn.net/gdutxiaoxu/article/details/81459830
     - https://jeanboy.blog.csdn.net/article/details/108314751
+- JNI hook
+- ClassLoader hook
+- Dalvik Hook / ART Hook
+  - 利用虚拟机执行 java 代码的机制进行 hook
+  - [几种 Dalvik Hook 方案研究](https://blog.csdn.net/wyzzgo/article/details/53706685)
 
-Dalvik Hook
-- 利用虚拟机执行 java 代码的机制进行 hook
-- [几种Dalvik Hook方案研究](https://blog.csdn.net/wyzzgo/article/details/53706685)
-
-ART Hook
+> 简单看，可分为 java 派和 native 派，参考：[ART下的方法内联策略及其对Android热修复方案的影响分析](https://github.com/WeMobileDev/article/blob/master/ART%E4%B8%8B%E7%9A%84%E6%96%B9%E6%B3%95%E5%86%85%E8%81%94%E7%AD%96%E7%95%A5%E5%8F%8A%E5%85%B6%E5%AF%B9Android%E7%83%AD%E4%BF%AE%E5%A4%8D%E6%96%B9%E6%A1%88%E7%9A%84%E5%BD%B1%E5%93%8D%E5%88%86%E6%9E%90.md)
+> [YAHFA--ART环境下的Hook框架](http://rk700.github.io/2017/03/30/YAHFA-introduction/)
 
 Binary Hook
 - DBI，动态二进制插桩
 - [Pin 动态二进制插桩](https://www.bookstack.cn/read/CTF-All-In-One/doc-5.2.1_pin.md)
 - 主要类型：异常 Hook、inline hook、got hook、LD_PRELOAD hook、虚表 hook
+
 
 xposed 检测与对抗
 
@@ -75,6 +90,3 @@ Frida 检测与对抗
 [strongR-frida-android](https://github.com/hluwa/strongR-frida-android)
 
 hook 框架必要依赖的检测，如 magisk、root，对应方法：hook 检测点，根本方法是去依赖
-
-
-
