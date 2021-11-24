@@ -37,9 +37,9 @@ Hook 的对象是函数，Hook 的能力包括：
 
 
 Java Hook
-- 利用反射、Proxy
-    - https://blog.csdn.net/gdutxiaoxu/article/details/81459830
-    - https://jeanboy.blog.csdn.net/article/details/108314751
+- 利用反射（只能 hook Field，不能 hook Method）
+    - [几个例子](https://blog.csdn.net/gdutxiaoxu/article/details/81459830)
+- 利用 Instrumentation API
 - JNI hook
 - ClassLoader hook
 - Dalvik Hook / ART Hook
@@ -51,8 +51,17 @@ Java Hook
 
 Binary Hook
 - DBI，动态二进制插桩
-- [Pin 动态二进制插桩](https://www.bookstack.cn/read/CTF-All-In-One/doc-5.2.1_pin.md)
-- 主要类型：异常 Hook、inline hook、got hook、LD_PRELOAD hook、虚表 hook
+  - [Pin 动态二进制插桩](https://www.bookstack.cn/read/CTF-All-In-One/doc-5.2.1_pin.md)
+- 主要类型
+  - 异常 Hook
+  - inline hook
+  - [EntryPoint hook](https://zhuanlan.zhihu.com/p/59385335)
+  - got hook
+  - LD_PRELOAD hook
+  - 虚表 hook
+
+
+> [这篇 hook 原理综述文章很重要](https://weishu.me/2017/11/23/dexposed-on-art/)
 
 
 xposed 检测与对抗
