@@ -14,31 +14,20 @@
 
 ### object file
 
-C 程序的每个文件都是一个模块，应用程序可由多个模块组合而成。具体到编译上，首先每个文件会被编译为目标文件 object file，然后链接器会将这些目标文件链接为最终的可执行程序
+目标文件是程序的二进制格式的表现形式，主要有三种类型：
 
-> object file 在不同语境下有两类含义，一是泛指目标文件总体，是集合概念，二是特指可重定位文件
-
-object file 要么用于链接（program linking），要么用于执行（program execution），因此可分为：
-
-- relocatable file（可重定位目标文件）是编译或汇编后的产物，代码地址从 0 开始。此时还无法直接被 CPU 运行，也不能被其它程序加载，只能用作生成可执行文件的原料。在 linux 下扩展名为 `.o`，windows 下扩展名为 `.obj`
-- executable file（可执行目标文件）是链接器（linker）生成的产物，可直接被 CPU 运行。[可执行文件扩展名](https://fileinfo.com/filetypes/executable)有很多
-
-relocatable file 可用于生成静态库和动态库，以被其他程序加载使用
-
-- 静态库
-    - 本质就是一个或多个 object file 打包（archive）成一个文件，在编译期，只有被引用到的库文件会被链接到目标文件。静态库本质上就是给模块的复用提供一些便利
-    - linux 下扩展名为 `.a`，windows 下扩展名为 `.lib`
-    - 命令示例：`ar rcs xxx.a k.o j.o`
-- 动态库
-    - 动态库文件由一个或多个 object file 生成，可在加载阶段或动态运行阶段，被动态加载的文件（即不会被链接/拷贝到目标文件中）。动态库的本质是实现跨应用程序的复用
+- re-locatable file（可重定位目标文件）
+    - re-locatable file 是编译或汇编后的产物，代码地址从 0 开始，无法直接被 CPU 运行，也不能被其它程序加载，只能用作生成 executable file 或 shared object file 的原料
+    - linux 下扩展名为 `.o`，windows 下扩展名为 `.obj`
+- executable file（可执行目标文件）
+    - executable file 是链接器（linker）生成的产物，可直接被 CPU 运行
+    - [可执行文件扩展名](https://fileinfo.com/filetypes/executable)有很多
+- shared object file（动态库文件）
+    - 动态库文件由一个或多个 object file 生成，可在运行时被动态加载与执行。相比静态库，动态库在跨应用程序的复用上具备许多优势
     - linux 下扩展名为 `.so`（shared object），windows 下扩展名为 `.dll`（Dynamic link library）
-    - 命令示例：`gcc -shared k.o j.o -o xxx.so`
+    - 生成命令示例：`gcc -shared a.o b.o -o output.so`
 
-综上，object file 主要分三种类型：
-
-- relocatable file
-- executable file
-- shared object file
+可见，目标文件要么用于链接（program linking），要么用于执行（program execution）
 
 ### ABI
 
