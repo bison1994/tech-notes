@@ -15,10 +15,27 @@
 
 ### 集合类
 
+- 一元集合：列表 List、去重集合 Set、队列 Queue
+- 二元映射集合：Map
+- 集合的镜映：视图 View
+
+> 通用问题：大小是否可伸缩？是否允许重复？是否有序？是否可更改？
+
 - ArrayList：自适应大小，解决数组大小不可改的问题
 - LinkedList：通过链表解决 ArrayList 插入删除效率缓慢的问题
 - HashSet：无重复的无序散列集合，解决 List 查询缓慢的问题。基于链表 or 平衡二叉树实现
+  - LinkedHashSet：有序的无重复散列集合。可记住元素插入次序的集
 - TreeSet：无重复的有序集合，解决添加数据时查重效率问题。基于红黑树实现
+- EnumSet：有限个实例的 Set
+- ArrayDeque：双端队列
+- PriorityDeque：适用于随机添加，但每次都取出最优先任务的场景
+- HashMap：映射。储存键值对的数据结构
+  - WeakHashMap：方便垃圾回收的 HashMap
+  - LinkedHashMap：按序添加的 HashMap
+  - EnumMap：键为 EnumSet 的 Map
+  - IdentityHashMap：适用于跟踪哪些对象已被遍历过的场景
+- TreeMap：键有序的 Map
+
 
 ### 类
 
