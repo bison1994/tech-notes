@@ -37,7 +37,7 @@
 - EnumSet：有限个实例的 Set
 - ArrayDeque：双端队列
 - PriorityDeque：适用于随机添加，但每次都取出最优先任务的场景
-- HashMap：映射。储存键值对的数据结构
+- HashMap：映射。储存键值对的数据结构，基于数组链表实现
   - WeakHashMap：方便垃圾回收的 HashMap
   - LinkedHashMap：按序添加的 HashMap
   - EnumMap：键为 EnumSet 的 Map
@@ -48,6 +48,10 @@
   - Properties：键和值都是字符串的映射，方便与文本文件交互
   - Stack：栈
   - BitSet：位集，存储二元值的集合
+
+> Java 5 引入了并发容器类，来提升同步容器类（如 HashTable）的性能
+> HashTable 核心思想，是利用数组查询极快的性质（基址+偏移可直接得到内存地址），来实现任意序列的快速查询，即将任意序列映射成数组的 index。因为用的是数组，所以算出 hashcode 以后必须取余数，才能获得键值对真正存储的位置，如图：
+> ![hash table](../assets/hashtable_structure.png)
 
 ### 类
 
