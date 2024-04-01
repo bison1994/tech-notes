@@ -1,7 +1,4 @@
-# SQL必知必会
-
-SQL必知必会——从入门到数据实战 陈旸
-
+# mysql
 
 ### SQL 是什么
 
@@ -95,3 +92,30 @@ FROM ... WHERE ... GROUP BY ... HAVING ... SELECT ... DISTINCT ... ORDER BY ... 
 每个步骤会产生一个虚拟表，传给下一个步骤
 
 
+### 子查询
+
+关联子查询（correlated subquery），涉及外部（联表）的子查询，既可以用在 WHERE/EXISTS/IN/ANY/ALL/SOME 中，也可以作为计算字段用在 SELECT 中
+
+
+### 视图
+
+视图是虚拟的表，本质是一个 sql 查询。增加一层，可用于实现权限控制、数据格式转化、代码复用等目的
+
+尽管视图也支持更新，但并不是为更新设计的（受很多限制），因此不要对视图进行更新操作
+
+
+### 存储过程
+
+存储过程就是封装了一系列 select 操作的函数，支持传参，函数内可以用 if else 这种流程控制语句
+
+### 游标
+
+### 事务
+
+### 索引
+
+> [MySQL索引原理及慢查询优化](https://tech.meituan.com/2014/06/30/mysql-index.html)
+
+> 参考材料：《MySQL 必知必会》by Ben Forta
+
+> 参考材料：极客时间《SQL必知必会——从入门到数据实战》by 陈旸
