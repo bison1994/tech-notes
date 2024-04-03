@@ -1,4 +1,4 @@
-# mysql
+# MySQL
 
 ### SQL 是什么
 
