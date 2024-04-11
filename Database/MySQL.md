@@ -112,6 +112,17 @@ FROM ... WHERE ... GROUP BY ... HAVING ... SELECT ... DISTINCT ... ORDER BY ... 
 
 ### 事务
 
+- MySQL 的引擎中，InnoDB 支持事务，MyISAM 不支持
+- 四大特性（ACID）：原子性是基础，一致性是约束条件，隔离性（Isolation）是手段，持久性（Durability）是目的。持久性主要靠事务日志保障，即使发生系统故障，也能基于日志重新执行
+- 隐式/显式事务：本质就是是否自动提交，不用自动提交就需要显式写 commit 命令来提交。MySQL 默认是自动提交（隐式），可通过 `set autocommit = 0;` 关闭自动提交
+    - 默认设置下，每条 SQL 语句就是一个事务，即执行 SQL 语句后自动提交。为了达到将几个操作做为一个整体的目的，需要使用 BEGIN 或 START TRANSACTION 开启一个事务，或者禁止当前会话的自动提交
+    - BEGIN 或 START TRANSACTION 命令之后，一直遇到 COMMIT 或 ROLLBACK 命令，之间的 SQL 语句属于同一个事务
+- completion_type
+    - 0：default
+    - 1：commit and chain，自动开启下一个相同隔离级别的事务
+    - 2：commit = commit and release
+
+
 ### 索引
 
 > [MySQL索引原理及慢查询优化](https://tech.meituan.com/2014/06/30/mysql-index.html)
