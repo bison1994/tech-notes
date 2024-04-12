@@ -113,14 +113,25 @@ FROM ... WHERE ... GROUP BY ... HAVING ... SELECT ... DISTINCT ... ORDER BY ... 
 ### 事务
 
 - MySQL 的引擎中，InnoDB 支持事务，MyISAM 不支持
-- 四大特性（ACID）：原子性是基础，一致性是约束条件，隔离性（Isolation）是手段，持久性（Durability）是目的。持久性主要靠事务日志保障，即使发生系统故障，也能基于日志重新执行
+- 四大特性（ACID）：原子性是基础，一致性是约束条件，隔离性（Isolation）是手段（避免数据不一致），持久性（Durability）是目的。持久性主要靠事务日志保障，即使发生系统故障，也能基于日志重新执行
 - 隐式/显式事务：本质就是是否自动提交，不用自动提交就需要显式写 commit 命令来提交。MySQL 默认是自动提交（隐式），可通过 `set autocommit = 0;` 关闭自动提交
     - 默认设置下，每条 SQL 语句就是一个事务，即执行 SQL 语句后自动提交。为了达到将几个操作做为一个整体的目的，需要使用 BEGIN 或 START TRANSACTION 开启一个事务，或者禁止当前会话的自动提交
-    - BEGIN 或 START TRANSACTION 命令之后，一直遇到 COMMIT 或 ROLLBACK 命令，之间的 SQL 语句属于同一个事务
+    - BEGIN 或 START TRANSACTION 命令之后，一直遇到 COMMIT 或 ROLLBACK 命令，之间的 SQL 语句属于同**一个事务**
 - completion_type
     - 0：default
     - 1：commit and chain，自动开启下一个相同隔离级别的事务
     - 2：commit = commit and release
+- 并发异常：一个事务，由于其他事务的并发操作，导致不符合预期的情形
+    - 脏读（Dirty Read）：读到了不一定最终提交（可能回滚）的数据
+    - 不可重复读（Nnrepeatable Read）：when a transaction reads the same row twice but gets different data each time
+    - 幻读（Phantom Read）：并发场景中常见的“先检测后操作”类型的问题。A phantom is a row that matches the search criteria but is not initially seen
+        - 举例：select 某记录是否存在，不存在，准备插入此记录，但执行 insert 时发现此记录已存在，无法插入，令人产生幻觉
+- 隔离级别：区分隔离级别，本质是为了协调并发性能，完全不隔离，性能最好，但会出现异常，完全隔离，不会有并发异常，但性能最低
+    - RU：完全不加锁/不隔离
+    - RC：对写加锁，所有事务都要等别人写入完成再读
+    - RR（MySQL 默认级别）： 
+    - S：一个事务对全部要操作的 rows 加互斥锁，完全牺牲并发性
+    - ![](../assets/mysql_isolation_levels.png)
 
 
 ### 索引
