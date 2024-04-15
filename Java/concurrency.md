@@ -11,11 +11,11 @@
 - 2 内置锁 `sychronized`，可修饰方法、代码块。一种互斥锁，将一段代码原子化（临界区 critical section）
     - 每个 Java 对象都内置了一个锁，继承了 Object 的 `wait`、`notify`、`notifyAll` 方法
 - 3 `volatile`。Java 5.0 以前只有 `synchronized`（“内置锁”，jvm 内置属性） 和 `volatile`
-- 4 `java.util.concurrent` 包（简称 `JUC`）
-    - locks 包：ReentrantLock、Condition、Lock、ReadWriteLock...
+- 4 `java.util.concurrent.locks` 包：`ReentrantLock`、`Condition`、`Lock`、`ReadWriteLock`...
       - 互斥锁 VS 读写锁 ReadWriteLock：写是互斥的，读不互斥，目的是提高并行性能，是对互斥锁的优化
       - Java 5.0 新增 `ReentrantLock`（“显式锁”），和 synchronized 很相似，主要是提供更多的灵活性，包括用于自定义轮询锁和定时锁以应对死锁问题、支持自定义释放锁的时机（unlock 方法）、支持中断（lockInterruptibly 方法）、支持调整加锁的代码范围、支持定义锁的公平性
       - `AbstractQueuedSynchronizer`：多数同步类的基类
+- 5 `java.util.concurrent` 包（简称 `JUC`）
     - Synchronizers 同步相关的类
       - Semaphore 类，信号量
       - Latch 类，闭锁
@@ -28,6 +28,9 @@
     - Concurrent Collections 并发容器
     - Future、Runnable、Callable
     - ...
+- 6 原子变量类。`java.util.concurrent.atomic` 包
+  - 原子变量是一种更好的 volatile
+- 7 `ThreadLocal`
 
 
 ### 线程
@@ -59,7 +62,7 @@
 
 - **竞态问题**（race condition）：由于不稳定的执行顺序导致不正确的结果
   - 【单个操作粒度】
-    - 最简单更改操作，在指令层面至少也分为“读”-“改”-“写”三个步骤
+    - 最简单更改操作，在指令层面至少也分为“读”-“改”-“写”三个步骤，例如 i++ 语句
     - “先 check 再 act” 也是一种存在竞态问题的典型场景 -> 依赖先验条件，而条件是非线程安全的 -> 导致基于可能失效的观察结果作出执行
   - 【多个操作粒度】
     - 一个方法内的复合操作，受中断、重排序等影响，执行顺序是不稳定的
@@ -94,7 +97,7 @@
   - 破坏虚拟机/操作系统实现并发的机制、为了优化但引入并发问题的机制（多核、中断、重排序...）
     - **volatile**：告诉编译器和运行时，不要做重排序一类的优化，以确保变量具备可见性（比 sychronized 更轻量的同步机制，因为不涉及加锁操作），但不保障原子性
   - 按需使用多线程，哪些部分（尤其是写入操作）能用单线程，就不要用多线程
-- 线程封闭（Thread Confinement）：解决对象 Escape 导致的线程安全隐患，如对状态进行封装、用 ThreadLocal 实现封闭
+- 线程封闭（Thread Confinement）：解决对象 Escape 导致的线程安全隐患，如对状态进行封装、用 `ThreadLocal` 实现封闭
   - 一种相关的支持高效且安全并发的设计模式：阻塞队列 + 生产者/消费者模式
 
 > 锁意味着性能的损失，能通过别的机制解决，就不要无脑加锁，结合场景综合运用各类线程安全机制。线程安全和高性能之间具有矛盾性
