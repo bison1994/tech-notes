@@ -29,7 +29,7 @@
     - Future、Runnable、Callable
     - ...
 - 6 原子变量类。`java.util.concurrent.atomic` 包
-  - 原子变量是一种更好的 volatile
+    - “原子变量是一种更好的 volatile”
 - 7 `ThreadLocal`
 
 
