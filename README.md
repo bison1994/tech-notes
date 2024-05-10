@@ -63,11 +63,38 @@
 ### 三、后端/服务端
 
 - 开发
-    - 数据库
-    - 应用框架
+    - 数据库：mysql...
+    - 框架：Spring（Spring Boot）
     - 中间件
-- 架构
+        - ORM：MyBatis...
+        - 缓存：Redis、Memcached...
+        - 消息队列：Kafka、RabbitMQ、RocketMQ...
+        - RPC：Netty、Dubbo、Thrift...
+        - web server：Nginx、Tomcat、Jetty...
+        - 认证：JWT、SSO、Oauth...
+        - 日志
+        - 网关
+        - 调度
+        - 配置中心
+        - 搜索
+        - 权限
+    - 存储：hive...
+    - 分布式
+        - 微服务/容器化：Docker、Kubernetes
+        - zookeeper
 - 运维
+    - 性能优化
+    - 质量保障
+        - 事前测试：单测、压测、灰度、故障演练...
+        - 事中监控
+        - 事后诊断
+    - 可用性保障
+    - 工程化
+        - 依赖管理：Maven、Gradle
+        - 版本管理：Git
+        - 持续交付
+- 架构
+    - 
 
 
 ### 四、前端/客户端
