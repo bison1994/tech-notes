@@ -43,6 +43,19 @@ mysqld 结构如下：
 > sql 语句必须由分号结束
 
 
+### 启动服务
+
+要想在命令行连接服务，必须先启动服务
+
+在 Windows 上启动 MySQL 服务的方法取决于 MySQL 的安装方式和版本。如果安装 MySQL 时选择将其作为 Windows 服务安装，那么可通过Windows 的服务管理控制台来启动 MySQL 服务
+
+打开“运行”窗口（Win + R），输入services.msc，然后回车。
+
+在服务列表中找到MySQL服务。
+
+右击MySQL服务，选择“启动”。
+
+
 ### 数据库操作
 
 - 创建：`CREATE DATABASE [库名];`
