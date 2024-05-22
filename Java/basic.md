@@ -258,3 +258,19 @@ public static <T extends Comparable> T max(Collection<T> c) {
   - 可以执行多个目录，编译器会按顺序找
   - `.` 号表示当前目录，如果没有显式定义 class path，那么 `.` 就是默认 class path
   - 如果显式的定义了 class path，需要手动添加 `.`，否则当前目录就不在 class path 中
+
+
+### 异常
+
+- 分类
+  - Error：系统内部错误（应用程序无法控制）
+  - RuntimeException：与代码有关的异常（一旦出现，一定是程序的问题）
+  - IOException：与环境有关的异常（一旦出现，可能是特定环境出的问题）
+- Error 和 RuntimeException 被称为非检查型异常，因为要么无法控制，要么是明确的、应该避免的问题，因此编译器不会去检查这两类异常是否都有相应处理，而 IOException 的识别、抛出、捕获则是必需做的，因此编译器会检查是否有相应处理
+- 多个 catch 块捕获不同异常
+- catch 块中再次抛出新的异常，用 e.initCause 传递原始异常
+- 发生异常后的“收尾程序”
+    - finally
+      - 主要用于清理资源，不要写其他逻辑如 return
+    - try-with-resources
+      - try 块退出时，会自动调用资源的 close() 方法
