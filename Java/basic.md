@@ -274,3 +274,6 @@ public static <T extends Comparable> T max(Collection<T> c) {
       - 主要用于清理资源，不要写其他逻辑如 return
     - try-with-resources
       - try 块退出时，会自动调用资源的 close() 方法
+      - 支持一次写多个资源
+      - 支持 catch 和 finally 块
+- 断言：仅测试时运行、生产时删除的测试语句
