@@ -7,7 +7,21 @@
         - EJB（Enterprise JavaBean）：早期经常用于实现应用程序的业务逻辑，现在基本被轻量级框架如 Spring 所取代
         - ...
 - JavaEE 流行架构
-    - SSH：Structs + Spring + Hibernate（2015 年之前的远古架构）
+    - SSH：Structs + Spring + Hibernate（2015 年之前非常流行的架构）
     - SSM：Spring + Spring MVC + MyBatis
-- Spring
+- Spring：框架集合，包含子项目如 Spring Boot、Spring FrameWork 等
 - Spring Boot：可认为是 Spring 的脚手架，主要解决的问题是基于“约定大于配置”的原则预置了大多数配置，并且将手动用 xml 配 bean 的操作自动化了，同时内置了 tomcat 服务器，从而实现了 Spring 开箱即用
+- Bean：组件
+    - JavaBeanStyle Class：属性 + get/set 方法
+- Configure MetaData：元数据配置，有多种等价的写法：
+    - XML
+    - Annotation：@Component
+    - Java Config：由 Spring 社区提供的用于替代 XML 的 Java 风格的配置方式，@Configuration + @Bean
+- 用于定义/标识组件的注解
+    - @Repository：数据访问组件
+    - @Service：业务逻辑组件
+    - @Controller：控制层组件
+    - @Component：通用组件
+- 用于注入依赖组件的注解
+    - @Resource：优先以名称方式（Bean 的 id）注入，找不到则以类型方式注入
+    - @Autowire：以类型方式注入
